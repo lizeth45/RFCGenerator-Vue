@@ -29,7 +29,7 @@ npm run lint
 ```
 
 <h3>LICENSE</h3> 
-Plantilla Sakai Prime templates : https://github.com/primefaces/sakai-vue
+Sakai Prime templates : https://github.com/primefaces/sakai-vue
 <br>
 <h3>RFC Generator</h3> 
 Made by : Irma Michelle Ayala Vazquez | Lizeth Guadalupe Rodriguez Rodriguez 🤓
