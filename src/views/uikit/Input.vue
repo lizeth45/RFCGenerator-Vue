@@ -15,6 +15,9 @@ export default {
         const cantidad = ref('');
         const precioUnitario = ref('');
 
+	
+
+
         async function editProduct(row) {
             
             nomp.value = row.nomProducto;
@@ -66,7 +69,7 @@ export default {
 
 				this.productoItem.nomProducto = '';
 				this.productoItem.cantidad = '';
-				this.productoItem.precioUnintario = '';
+				this.productoItem.precioUnitario = '';
 			} else {
 				toast.add({ severity: 'warn', summary: 'Alerta', detail: 'Verifica que los campos estén completos.', life: 3000 });
 			}
@@ -106,7 +109,24 @@ export default {
 					return value.toLocaleString('en-US', {style: 'currency', currency: 'USD'});
 				return;
 			}
-        }    
+        },
+		computed: {
+			subtotal() {
+				return this.tablaCompras.reduce((subtotal, producto) => {
+					return subtotal + producto.precioParcial;
+				}, 0);
+			},
+			iva() {
+				return this.tablaCompras.reduce((iva, producto) => {
+					return iva + (producto.precioParcial * 0.16);
+				}, 0);
+			},
+			totalTotal() {
+				return this.tablaCompras.reduce((total, producto) => {
+					return total + producto.precioParcial + (producto.precioParcial * 0.16);
+				}, 0);
+			}
+		}
 }
 </script>
 
@@ -195,11 +215,11 @@ export default {
 				</template>
 				<template v-slot:end>
                     <label for="total">Subtotal: </label>
-					<InputText class="ml-3" type="text" placeholder="$ " v-model="totalCompra" disabled/>	
+					<InputText class="ml-3" type="number" placeholder="$ " v-model="subtotal" readonly/>	
                     <label class="ml-5" for="total">IVA (16%): </label>
-					<InputText class="ml-3" type="text" placeholder="$ " v-model="totalCompra" disabled/>	
+					<InputText class="ml-3" type="number" placeholder="$ " v-model="iva" readonly />	
 					<label class="ml-5" for="total">Total: </label>
-					<InputText class="ml-3" type="text" placeholder="$ " v-model="totalCompra" disabled/>	
+					<InputText class="ml-3" type="number" placeholder="$ " v-model="totalTotal" readonly />	
 				</template>
 				</Toolbar>
 			</Panel>
