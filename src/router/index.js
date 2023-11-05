@@ -28,10 +28,10 @@ const router = createRouter({
                     name: 'floatlabel',
                     component: () => import('@/views/uikit/FloatLabel.vue')
                 },
-                {
-                    path: '/uikit/invalidstate',
-                    name: 'invalidstate',
-                    component: () => import('@/views/uikit/InvalidState.vue')
+                {//Aqui era invalidstate
+                    path: '/uikit/api',
+                    name: 'api',
+                    component: () => import('@/views/uikit/ApiForm.vue')
                 },
                 {
                     path: '/uikit/button',

@@ -13,9 +13,9 @@ const model = ref([
         items: [
             { label: 'Generador RFC', icon: 'pi pi-fw pi-id-card', to: '/uikit/formlayout' },
             { label: 'Punto de venta', icon: 'pi pi-fw pi-cart-plus', to: '/uikit/input' }
-            // ,
+            ,
             // { label: 'Float Label', icon: 'pi pi-fw pi-bookmark', to: '/uikit/floatlabel' },
-            // { label: 'Invalid State', icon: 'pi pi-fw pi-exclamation-circle', to: '/uikit/invalidstate' },
+            { label: 'Consulta API REST', icon: 'pi pi-fw pi-search', to: '/uikit/api' },
             // { label: 'Button', icon: 'pi pi-fw pi-mobile', to: '/uikit/button', class: 'rotated-icon' },
             // { label: 'Table', icon: 'pi pi-fw pi-table', to: '/uikit/table' },
             // { label: 'List', icon: 'pi pi-fw pi-list', to: '/uikit/list' },

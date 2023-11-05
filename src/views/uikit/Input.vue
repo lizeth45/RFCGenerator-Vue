@@ -99,34 +99,34 @@ export default {
 				precioParcial:null
 			}
 		}
-		},
-		created() {
-			
-		},		
-		methods: {
-			formatoMoneda(value) {
-				if(value)
-					return value.toLocaleString('en-US', {style: 'currency', currency: 'USD'});
-				return;
-			}
-        },
-		computed: {
-			subtotal() {
-				return this.tablaCompras.reduce((subtotal, producto) => {
-					return subtotal + producto.precioParcial;
-				}, 0);
-			},
-			iva() {
-				return this.tablaCompras.reduce((iva, producto) => {
-					return iva + (producto.precioParcial * 0.16);
-				}, 0);
-			},
-			totalTotal() {
-				return this.tablaCompras.reduce((total, producto) => {
-					return total + producto.precioParcial + (producto.precioParcial * 0.16);
-				}, 0);
-			}
+	},
+	created() {
+		
+	},		
+	methods: {
+		formatoMoneda(value) {
+			if(value)
+				return value.toLocaleString('en-US', {style: 'currency', currency: 'USD'});
+			return;
 		}
+	},
+	computed: {
+		subtotal() {
+			return this.tablaCompras.reduce((subtotal, producto) => {
+				return subtotal + producto.precioParcial;
+			}, 0);
+		},
+		iva() {
+			return this.tablaCompras.reduce((iva, producto) => {
+				return iva + (producto.precioParcial * 0.16);
+			}, 0);
+		},
+		totalTotal() {
+			return this.tablaCompras.reduce((total, producto) => {
+				return total + producto.precioParcial + (producto.precioParcial * 0.16);
+			}, 0);
+		}
+	}
 }
 </script>
 
@@ -139,9 +139,9 @@ export default {
 			<Panel header="PUNTO DE VENTA (POS)" style="height: 100%">
 				<Toolbar class="p-mb-4">
 				<template v-slot:start>
-					<InputText type="text" size="40" placeholder="Nombre del producto..." v-model="productoItem.nomProducto"/>
-					<InputText class="ml-8" type="text" placeholder="Cant" v-model="productoItem.cantidad"/>
-					<InputText class="ml-8" type="text" placeholder="$ Precio U." v-model="productoItem.precioUnitario"/>										
+					<InputText name="nomproduct" type="text" size="40" placeholder="Nombre del producto..." v-model="productoItem.nomProducto"/>
+					<InputText name="cant" class="ml-8" type="text" placeholder="Cant" v-model="productoItem.cantidad"/>
+					<InputText name="precu" class="ml-8" type="text" placeholder="$ Precio U." v-model="productoItem.precioUnitario"/>										
 				</template>
 				<template v-slot:end>
 					<Button label="Registrar" icon="pi pi-plus" class="p-button-success p-mr-2" @click="registrarCompra()" />	
@@ -214,12 +214,12 @@ export default {
 								
 				</template>
 				<template v-slot:end>
-                    <label for="total">Subtotal: </label>
-					<InputText class="ml-3" type="number" placeholder="$ " v-model="subtotal" readonly/>	
-                    <label class="ml-5" for="total">IVA (16%): </label>
-					<InputText class="ml-3" type="number" placeholder="$ " v-model="iva" readonly />	
+                    <label for="subtotal">Subtotal: </label>
+					<InputText id="subtotal" class="ml-3" type="text" :value="formatoMoneda(subtotal)" readonly/>
+                    <label class="ml-5" for="iva">IVA (16%): </label>
+					<InputText id="iva" class="ml-3" type="text" :value="formatoMoneda(iva)" readonly />	
 					<label class="ml-5" for="total">Total: </label>
-					<InputText class="ml-3" type="number" placeholder="$ " v-model="totalTotal" readonly />	
+					<InputText id="total" class="ml-3" type="text" :value="formatoMoneda(totalTotal)" readonly />	
 				</template>
 				</Toolbar>
 			</Panel>
